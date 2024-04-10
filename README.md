@@ -2,7 +2,7 @@
 Assignment 4 - CRUD APP - Persistent data, create, update, and delete
 
 This is a simple CRUD App that creates a user and stores simple info including 
-    an image
+    an imagefile name (image is stored locally)
 
 To use:
 - In XAAMP Control Panel start Apche and MySQL
@@ -14,5 +14,4 @@ To use:
 
 Notes: 
 - Images are stored locally, with only the file name being stored in the DB
-- As of submission, delete and edit have not been implemented
 
