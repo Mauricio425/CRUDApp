@@ -117,7 +117,7 @@ public class UserController {
         repo.save(user);
         
         return "redirect:/users"; //after submit, redirect to users page
-    } //stoppes on 40:45
+    } 
     
     @GetMapping("/edit")
     public String showEditPage(Model model, @RequestParam int id){
@@ -205,5 +205,31 @@ public class UserController {
         return "redirect:/users";
     }
     
-    
+    //Delete user
+    @GetMapping("/delete")
+    public String deleteUser(@RequestParam int id) {
+
+        try {
+            User user = repo.findById(id).get(); //find user in the DB
+
+            //before deleting user we must delete the image
+            Path imagePath = Paths.get("public/images/" + user.getImageFileName());
+
+            try {
+                Files.delete(imagePath);
+            } catch (Exception ex) {
+                System.out.println("Exception: " + ex.getMessage());
+
+            }
+
+            //delete user
+            repo.delete(user);
+
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex.getMessage());
+        }
+
+        return "redirect:/users";
+    }
+
 }
